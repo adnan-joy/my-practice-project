@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Mobile = ({mobile}) => {
-    console.log(mobile);
     return (
         <div className='student'>
             <h3>Name:{mobile.name}</h3>

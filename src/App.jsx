@@ -1,12 +1,22 @@
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Batsman from './Batsman'
 import Mobile from './Mobile'
 import State from './State'
+import Friends from './Friends'
+import Form from './Form'
+
+
+const fetchFriends = async()=>{
+  const res = await fetch ('https://jsonplaceholder.typicode.com/users');
+    return res.json();
+}
 
 function App() {
+  const friendsPromise=fetchFriends();
+
   const batsmen = ['Smith', 'Kohli', "Sakib", "Lara", "Head"];
 
   const mobiles = [
@@ -23,6 +33,8 @@ function App() {
     const newNum = num + 2;
     alert(newNum);
   }
+  
+
   return (
     <>
 
@@ -39,12 +51,15 @@ function App() {
       {
         mobiles.map(mobile => <Mobile key={mobile.id} mobile={mobile}></Mobile>)
       }
-
+      <Suspense fallback={<h3>Friends Are Coming.....</h3>}>
+        <Friends friendsPromise={friendsPromise}></Friends>
+      </Suspense>
       {
         batsmen.map(batsman => <Batsman batsman={batsman}></Batsman>)
       }
 
       <State></State>
+      <Form ></Form>
 
       {/* <button onClick={handleClick}> Click Me</button>
     <button onClick={()=>handleClick2(10)}>Click to add number 2</button> */}
