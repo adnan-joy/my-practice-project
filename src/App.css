@@ -1,0 +1,8 @@
+.student{
+  color: blue;
+  border: 2px solid blueviolet;
+  border-radius: 20px;
+  max-width: 50%;
+  text-align: center;
+  align-items: center;
+}
